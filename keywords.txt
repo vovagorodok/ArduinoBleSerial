@@ -1,0 +1,13 @@
+# Datatypes (KEYWORD1)
+ArduinoBleSerial KEYWORD1
+BleSerialService KEYWORD1
+
+# Methods and Functions (KEYWORD2)
+begin KEYWORD2
+write KEYWORD2
+initBle      KEYWORD2
+advertiseBle KEYWORD2
+
+# Instances (KEYWORD2)
+
+# Constants (LITERAL1)

@@ -1,0 +1,30 @@
+{
+    "name": "ArduinoBleSerial",
+    "version": "0.0.1",
+    "description": "Bluetooth low energy (BLE) library for serial communication",
+    "keywords": "BLE, Serial, bluetooth",
+    "repository":
+    {
+      "type": "git",
+      "url": "https://github.com/vovagorodok/ArduinoBleSerial"
+    },
+    "authors":
+    [
+      {
+        "name": "vovagorodok",
+        "email": "vovagorodok2@gmail.com",
+        "url": "https://github.com/vovagorodok",
+        "maintainer": true
+      },
+      {
+        "name": "dkwach",
+        "email": "dawid.kwach@gmail.com",
+        "url": "https://github.com/dkwach"
+      }
+    ],
+    "license": "MIT",
+    "homepage": "https://github.com/vovagorodok/ArduinoBleSerial",
+    "headers": ["ArduinoBleSerial.h", "ArduinoBleSerialMultiservice.h"],
+    "frameworks": "arduino",
+    "platforms": ["*"]
+  }
