@@ -72,6 +72,8 @@ void BleSerialLib::onWrite(BLECharacteristic* characteristic)
 
 void BleSerialLib::send(const uint8_t* data, size_t size)
 {
+    if (!_txCharacteristic)
+        return;
     _txCharacteristic->setValue((uint8_t*)data, size);
     _txCharacteristic->notify();
 }
