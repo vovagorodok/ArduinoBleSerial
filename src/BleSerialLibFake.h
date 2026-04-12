@@ -3,6 +3,7 @@
 #ifdef BLE_SERIAL_BLE_LIB_FAKE
 #include "BleSerialUuids.h"
 #include "BleSerialService.h"
+#include "BleSerialSizes.h"
 #include <string>
 
 using BleSerialServerFake = int;

@@ -67,7 +67,7 @@ async def monitor(client: BleakClient, tx_char, rx_char):
     await client.start_notify(rx_char, callback)
 
     while True:
-        print(str(await queue.get(), 'utf-8'))
+        print(str(await queue.get(), 'utf-8'), end='')
 
 
 async def connect_and_monitor(dev):

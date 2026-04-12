@@ -4,11 +4,9 @@
 
 namespace
 {
-#define MAX_STR_SIZE 256
-
 BLEService service(BLE_SERIAL_SERVICE_UUID);
-BLECharacteristic rxCharacteristic(BLE_SERIAL_CHARACTERISTIC_UUID_RX, BLEWriteWithoutResponse, MAX_STR_SIZE);
-BLECharacteristic txCharacteristic(BLE_SERIAL_CHARACTERISTIC_UUID_TX, BLERead | BLENotify, MAX_STR_SIZE);
+BLECharacteristic rxCharacteristic(BLE_SERIAL_CHARACTERISTIC_UUID_RX, BLEWriteWithoutResponse, BLE_SERIAL_MAX_BUFFER_SIZE);
+BLECharacteristic txCharacteristic(BLE_SERIAL_CHARACTERISTIC_UUID_TX, BLERead | BLENotify, BLE_SERIAL_MAX_BUFFER_SIZE);
 }
 
 BleSerialLib::BleSerialLib():

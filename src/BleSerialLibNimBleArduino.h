@@ -3,6 +3,7 @@
 #ifdef BLE_SERIAL_BLE_LIB_NIM_BLE_ARDUINO
 #include "BleSerialUuids.h"
 #include "BleSerialService.h"
+#include "BleSerialSizes.h"
 
 class BleSerialLib: public BLECharacteristicCallbacks
 {
