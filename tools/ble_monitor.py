@@ -33,12 +33,6 @@ async def acquire_mtu(client: BleakClient):
     await client._backend._acquire_mtu()
 
 
-async def get_mtu(client: BleakClient):
-    is_fedora_linux = is_linux() and is_fedora()
-    if not is_fedora_linux:
-        return client.mtu_size
-
-
 async def connect(dev):
     client = BleakClient(dev)
 
