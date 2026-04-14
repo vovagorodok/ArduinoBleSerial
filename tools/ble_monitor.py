@@ -55,13 +55,12 @@ async def monitor(client: BleakClient, tx_char, rx_char):
     print("Monitoring...")
 
     # issue: https://github.com/hbldh/bleak/issues/1501
-    queue = asyncio.Queue(1)
     async def callback(char, array):
-        await queue.put(array)
+        print(str(array, 'utf-8'), end='', flush=True)
     await client.start_notify(rx_char, callback)
 
     while True:
-        print(str(await queue.get(), 'utf-8'), end='')
+        await asyncio.sleep(0.01)
 
 
 async def connect_and_monitor(dev):
