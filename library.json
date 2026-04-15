@@ -1,6 +1,6 @@
 {
     "name": "ArduinoBleSerial",
-    "version": "0.0.4",
+    "version": "0.0.5",
     "description": "Bluetooth low energy (BLE) library for serial communication",
     "keywords": "BLE, Serial, bluetooth",
     "repository":
