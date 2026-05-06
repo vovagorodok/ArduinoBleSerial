@@ -2,7 +2,7 @@
 #include <ArduinoBleSerial.h>
 
 int main() {
-  ArduinoBleSerial.begin("ArduinoBleSerial");
-  return 0;
+    ArduinoBleSerial.begin("ArduinoBleSerial");
+    return 0;
 }
 #endif

@@ -3,17 +3,18 @@
 #include <iostream>
 
 void setup() {
-  Serial.begin(115200);
-  while (!Serial);
+    Serial.begin(115200);
+    while (!Serial)
+        ;
 
-  ArduinoBleSerial.begin("ArduinoBleSerial");
-  setupBleCout();
+    ArduinoBleSerial.begin("ArduinoBleSerial");
+    setupBleCout();
 }
 
 void loop() {
 #ifdef BLE_SERIAL_LIB_ARDUINO_BLE
-  BLE.poll();
+    BLE.poll();
 #endif
-  std::cout << "cout" << std::endl;
-  delay(1000);
+    std::cout << "cout" << std::endl;
+    delay(1000);
 }

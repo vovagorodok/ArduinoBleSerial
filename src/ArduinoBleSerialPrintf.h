@@ -2,8 +2,7 @@
 #include <ArduinoBleSerial.h>
 
 #ifdef ARDUINO_ARCH_ESP32
-static ssize_t _writeBle(void* cookie, const char* buf, size_t size)
-{
+static ssize_t _writeBle(void* cookie, const char* buf, size_t size) {
     static char buffer[BLE_SERIAL_MAX_BUFFER_SIZE];
     static size_t pos = 0;
 
@@ -20,31 +19,27 @@ static ssize_t _writeBle(void* cookie, const char* buf, size_t size)
     return size;
 }
 
-inline void setupBlePrintf()
-{
-    static cookie_io_functions_t funcs =
-    {
-      .read  = nullptr,
-      .write = _writeBle,
-      .seek  = nullptr,
-      .close = nullptr,
+inline void setupBlePrintf() {
+    static cookie_io_functions_t funcs = {
+        .read = nullptr,
+        .write = _writeBle,
+        .seek = nullptr,
+        .close = nullptr,
     };
     FILE* file = fopencookie(nullptr, "w", funcs);
-    if (file != nullptr)
-    {
+    if (file != nullptr) {
         setvbuf(file, nullptr, _IONBF, 0);
         stdout = file;
         stderr = file;
     }
 }
 #else
-extern "C" int _write(int fd, const char *ptr, int len)
-{
-    (void) fd;
+extern "C" int _write(int fd, const char* ptr, int len) {
+    (void)fd;
     ArduinoBleSerial.write(reinterpret_cast<const uint8_t*>(ptr), len);
     return len;
 }
 
-inline void setupBlePrintf()
-{}
+inline void setupBlePrintf() {
+}
 #endif

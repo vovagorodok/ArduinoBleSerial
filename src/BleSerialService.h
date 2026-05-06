@@ -1,12 +1,11 @@
 #pragma once
 #include "BleSerialDefinesArduino.h"
 
-class BleSerialService
-{
-public:
+class BleSerialService {
+ public:
     virtual void handleData(const uint8_t* data, size_t size);
     virtual ~BleSerialService() = default;
 
-protected:
+ protected:
     void sendData(const uint8_t* data, size_t size);
 };

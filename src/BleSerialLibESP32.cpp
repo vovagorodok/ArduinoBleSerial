@@ -2,13 +2,12 @@
 #ifdef BLE_SERIAL_BLE_LIB_ESP32
 #include "BleSerialDummyService.h"
 
-BleSerialLib::BleSerialLib():
+BleSerialLib::BleSerialLib() :
     _txCharacteristic(),
-    _serialService(&bleSerialDummyService)
-{}
+    _serialService(&bleSerialDummyService) {
+}
 
-void BleSerialLib::begin(const std::string& deviceName)
-{
+void BleSerialLib::begin(const std::string& deviceName) {
     BLEDevice::init(deviceName);
     auto* server = BLEDevice::createServer();
 
@@ -22,47 +21,36 @@ void BleSerialLib::begin(const std::string& deviceName)
     advertising->start();
 }
 
-void BleSerialLib::begin(BLEServer* server)
-{
+void BleSerialLib::begin(BLEServer* server) {
     auto* service = server->createService(BLE_SERIAL_SERVICE_UUID);
 
-    auto* rxCharacteristic = service->createCharacteristic(
-        BLE_SERIAL_CHARACTERISTIC_UUID_RX,
-        BLECharacteristic::PROPERTY_WRITE_NR
-    );
+    auto* rxCharacteristic =
+        service->createCharacteristic(BLE_SERIAL_CHARACTERISTIC_UUID_RX, BLECharacteristic::PROPERTY_WRITE_NR);
     rxCharacteristic->setCallbacks(this);
 
     auto* txCharacteristic = service->createCharacteristic(
-        BLE_SERIAL_CHARACTERISTIC_UUID_TX,
-        BLECharacteristic::PROPERTY_READ | BLECharacteristic::PROPERTY_NOTIFY
-    );
+        BLE_SERIAL_CHARACTERISTIC_UUID_TX, BLECharacteristic::PROPERTY_READ | BLECharacteristic::PROPERTY_NOTIFY);
     _txCharacteristic = txCharacteristic;
 
     auto* advertising = server->getAdvertising();
     service->start();
 }
 
-void BleSerialLib::begin(const std::string& deviceName,
-                         BleSerialService& serialService)
-{
+void BleSerialLib::begin(const std::string& deviceName, BleSerialService& serialService) {
     _serialService = &serialService;
     begin(deviceName);
 }
 
-void BleSerialLib::begin(BLEServer* server,
-                         BleSerialService& serialService)
-{
+void BleSerialLib::begin(BLEServer* server, BleSerialService& serialService) {
     _serialService = &serialService;
     begin(server);
 }
 
-void BleSerialLib::write(const uint8_t* data, size_t size)
-{
+void BleSerialLib::write(const uint8_t* data, size_t size) {
     send(data, size);
 }
 
-void BleSerialLib::onWrite(BLECharacteristic* characteristic)
-{
+void BleSerialLib::onWrite(BLECharacteristic* characteristic) {
     auto value = characteristic->getValue();
     auto data = value.data();
     auto size = value.length();
@@ -70,10 +58,10 @@ void BleSerialLib::onWrite(BLECharacteristic* characteristic)
     _serialService->handleData((uint8_t*)data, size);
 }
 
-void BleSerialLib::send(const uint8_t* data, size_t size)
-{
-    if (!_txCharacteristic)
+void BleSerialLib::send(const uint8_t* data, size_t size) {
+    if (!_txCharacteristic) {
         return;
+    }
     _txCharacteristic->setValue((uint8_t*)data, size);
     _txCharacteristic->notify();
 }

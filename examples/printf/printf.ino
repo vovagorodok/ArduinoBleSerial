@@ -3,17 +3,18 @@
 #include <cstdio>
 
 void setup() {
-  Serial.begin(115200);
-  while (!Serial);
+    Serial.begin(115200);
+    while (!Serial)
+        ;
 
-  ArduinoBleSerial.begin("ArduinoBleSerial");
-  setupBlePrintf();
+    ArduinoBleSerial.begin("ArduinoBleSerial");
+    setupBlePrintf();
 }
 
 void loop() {
 #ifdef BLE_SERIAL_LIB_ARDUINO_BLE
-  BLE.poll();
+    BLE.poll();
 #endif
-  printf("printf\n");
-  delay(1000);
+    printf("printf\n");
+    delay(1000);
 }

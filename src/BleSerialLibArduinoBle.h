@@ -5,20 +5,18 @@
 #include "BleSerialService.h"
 #include "BleSerialSizes.h"
 
-class BleSerialLib
-{
-public:
+class BleSerialLib {
+ public:
     BleSerialLib();
 
     bool begin(const char* deviceName);
     void begin();
-    bool begin(const char* deviceName,
-               BleSerialService& serialService);
+    bool begin(const char* deviceName, BleSerialService& serialService);
     void begin(BleSerialService& serialService);
 
     void write(const uint8_t* data, size_t size);
 
-private:
+ private:
     void onWrite(const BLECharacteristic& characteristic);
     void send(const uint8_t* data, size_t size);
     static void onWrite(BLEDevice central, BLECharacteristic characteristic);

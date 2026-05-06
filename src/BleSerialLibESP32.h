@@ -5,21 +5,18 @@
 #include "BleSerialService.h"
 #include "BleSerialSizes.h"
 
-class BleSerialLib: public BLECharacteristicCallbacks
-{
-public:
+class BleSerialLib : public BLECharacteristicCallbacks {
+ public:
     BleSerialLib();
 
     void begin(const std::string& deviceName);
     void begin(BLEServer* server);
-    void begin(const std::string& deviceName,
-               BleSerialService& serialService);
-    void begin(BLEServer* server,
-               BleSerialService& serialService);
+    void begin(const std::string& deviceName, BleSerialService& serialService);
+    void begin(BLEServer* server, BleSerialService& serialService);
 
     void write(const uint8_t* data, size_t size);
 
-private:
+ private:
     void onWrite(BLECharacteristic* characteristic) override;
     void send(const uint8_t* data, size_t size);
 
