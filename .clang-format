@@ -174,7 +174,7 @@ IndentCaseLabels: true
 IndentExportBlock: false
 IndentExternBlock: AfterExternBlock
 IndentGotoLabels: true
-IndentPPDirectives: BeforeHash # Use BeforeHash only for complex parts
+IndentPPDirectives: None # Use BeforeHash only for complex parts
 IndentRequiresClause: true
 IndentWidth:     4
 IndentWrappedFunctionNames: false

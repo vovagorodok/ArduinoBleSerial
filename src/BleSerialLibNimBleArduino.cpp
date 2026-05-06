@@ -36,7 +36,11 @@ bool BleSerialLib::begin(BLEServer* server) {
                                                            NIMBLE_PROPERTY::READ | NIMBLE_PROPERTY::NOTIFY);
     _txCharacteristic = txCharacteristic;
 
+#ifdef BLE_SERIAL_BLE_LIB_NIM_BLE_ARDUINO_V1
     return service->start();
+#else
+    return true;
+#endif
 }
 
 bool BleSerialLib::begin(const std::string& deviceName, BleSerialService& serialService) {
